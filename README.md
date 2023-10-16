@@ -35,7 +35,7 @@ Install and run DynamoDB on your local machine:
     4. Verify DynamoDB
         * `aws dynamodb list-tables --endpoint-url http://localhost:8000`
     5. Create table for Ad
-        * `aws dynamodb create-table --cli-input-json file://example-table-definition.json --endpoint-url http://localhost:8000`
+        * `aws dynamodb create-table --cli-input-json file://identity-table-definition.json --endpoint-url http://localhost:8000`
     6. [Reference](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
 
 3. Visualizing the DynamoDB Table data
@@ -61,10 +61,10 @@ There are a few options to run the application (from more flexible to least)
 
   ```bash
   mvn clean package
-  java -jar ./target/example-service-exec.jar
+  java -jar ./target/identity-service-exec.jar
   ```
 
-### Invoking example Service
+### Invoking identity Service
 
 You can use your favourite gRPC client (e.g. [BloomRPC](https://formulae.brew.sh/cask/bloomrpc))
 

@@ -6,11 +6,11 @@
 
     <parent>
         <groupId>com.techorgx.api</groupId>
-        <artifactId>example-service</artifactId>
+        <artifactId>identity-service</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>example-api-protos</artifactId>
+    <artifactId>identity-api-protos</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
     <dependencies>
