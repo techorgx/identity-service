@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "IdentityDataApiProto";
+option java_package = "com.techorgx.identity.api.v1";
+
+service IdentityApi {
+  rpc createUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc verifyEmail (VerifyEmailRequest) returns (VerifyEmailResponse);
+  rpc verifyEmailOtp (VerifyEmailOtpRequest) returns (VerifyEmailOtpResponse);
+}
+
+message CreateUserRequest {
+  string username = 1;
+  string password = 2;
+  string email = 3;
+  string firstName = 4;
+  string LastName = 5;
+}
+
+message CreateUserResponse {
+  string username = 1;
+  string userId = 2;
+  string userStatus = 3;
+  bool isEmailVerified = 4;
+  bool userExists = 5;
+}
+
+message VerifyEmailRequest {
+   string email = 1;
+}
+
+message VerifyEmailResponse {
+  string message = 1;
+}
+
+message VerifyEmailOtpRequest {
+  string otp = 1;
+}
+
+message VerifyEmailOtpResponse {
+  string isValidOtp = 1;
+}

@@ -11,6 +11,9 @@ security:
     enabled: true
     bypass: "test"
     keyFilePath: "secrets/local-ads-service-private.key"
+    audience: []
+    jwtTtlMin: 1
+    opaqueTokenTtlHrs: 24
 
 server:
   error:

@@ -1,13 +1,25 @@
 package com.techorgx.api.grpc
 
-import com.techorgx.identity.api.v1.ExampleApiGrpcKt
-import com.techorgx.identity.api.v1.PersonRequest
-import com.techorgx.identity.api.v1.PersonResponse
+import com.techorgx.identity.api.v1.CreateUserRequest
+import com.techorgx.identity.api.v1.CreateUserResponse
+import com.techorgx.identity.api.v1.IdentityApiGrpcKt
+import com.techorgx.identity.api.v1.VerifyEmailOtpRequest
+import com.techorgx.identity.api.v1.VerifyEmailOtpResponse
+import com.techorgx.identity.api.v1.VerifyEmailRequest
+import com.techorgx.identity.api.v1.VerifyEmailResponse
 import org.lognet.springboot.grpc.GRpcService
 
 @GRpcService
-class IdentityApi : ExampleApiGrpcKt.ExampleApiCoroutineImplBase() {
-    override suspend fun getPerson(request: PersonRequest): PersonResponse {
-        return super.getPerson(request)
+class IdentityApi : IdentityApiGrpcKt.IdentityApiCoroutineImplBase() {
+    override suspend fun createUser(request: CreateUserRequest): CreateUserResponse {
+        return super.createUser(request)
+    }
+
+    override suspend fun verifyEmail(request: VerifyEmailRequest): VerifyEmailResponse {
+        return super.verifyEmail(request)
+    }
+
+    override suspend fun verifyEmailOtp(request: VerifyEmailOtpRequest): VerifyEmailOtpResponse {
+        return super.verifyEmailOtp(request)
     }
 }
