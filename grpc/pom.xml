@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.techorgx.api</groupId>
-        <artifactId>example-service</artifactId>
+        <artifactId>identity-service</artifactId>
         <version>1.0</version>
     </parent>
 
@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>com.techorgx.api</groupId>
-            <artifactId>example-api-protos</artifactId>
+            <artifactId>identity-api-protos</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>
@@ -40,7 +40,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <finalName>example-service</finalName>
+                            <finalName>identity-service</finalName>
                             <outputDirectory>${project.basedir}/../target</outputDirectory>
                             <classifier>exec</classifier>
                             <mainClass>com.techorgx.api.ApplicationKt</mainClass>
