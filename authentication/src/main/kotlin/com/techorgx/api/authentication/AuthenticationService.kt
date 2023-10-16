@@ -20,12 +20,13 @@ class AuthenticationService(
 
         val signer: Signer = RSASigner.newSHA256Signer(secretKey)
 
-        val jwt = JWT().setSubject(objectMapper.writeValueAsString(claims))
-            .setIssuer(ISSUER)
-            .setIssuedAt(ZonedDateTime.now(ZoneOffset.UTC))
-            .setAudience("")
-            .setUniqueId(ObjectId().toString())
-            .setExpiration(ZonedDateTime.now(ZoneOffset.UTC).plusMinutes(JWT_TTL_MIN))
+        val jwt =
+            JWT().setSubject(objectMapper.writeValueAsString(claims))
+                .setIssuer(ISSUER)
+                .setIssuedAt(ZonedDateTime.now(ZoneOffset.UTC))
+                .setAudience("")
+                .setUniqueId(ObjectId().toString())
+                .setExpiration(ZonedDateTime.now(ZoneOffset.UTC).plusMinutes(JWT_TTL_MIN))
 
         return JWT.getEncoder().encode(jwt, signer)
     }
