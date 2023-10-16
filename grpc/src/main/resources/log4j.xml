@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="standardLayout" target="SYSTEM_OUT" follow="true">
+            <StandardLogLayout/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <logger name="com.project" level="warn"/>
+        <!-- info logs -->
+
+        <logger name="com.amazonaws.request" level="debug"/>
+        <Root level="INFO">
+            <AppenderRef ref="standardLayout" />
+        </Root>
+    </Loggers>
+</Configuration>
