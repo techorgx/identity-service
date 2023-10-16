@@ -13,5 +13,5 @@ data class User(
     val registrationData: ZonedDateTime = ZonedDateTime.now(ZoneOffset.UTC),
     val lastLoginDate: ZonedDateTime = ZonedDateTime.now(ZoneOffset.UTC),
     val userStatus: UserStatus = UserStatus.SUSPENDED,
-    val isEmailVerified: Boolean = false
+    val isEmailVerified: Boolean = false,
 )
