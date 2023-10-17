@@ -31,7 +31,10 @@ class UserRepositoryImpl(
         return null
     }
 
-    override fun updateUserStatus(id: String, status: UserStatus) {
+    override fun updateUserStatus(
+        id: String,
+        status: UserStatus,
+    ) {
         val user = findById(id)
         user?.let {
             it.userStatus = status

@@ -12,7 +12,7 @@ class IdentityService(
     private val customerService: CustomerService,
     private val customerMapper: CustomerMapper,
     private val userMapper: UserMapper,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) {
     fun createUser(request: CreateUserRequest): CreateUserResponse {
         val user = userMapper.mapToUser(request)
@@ -24,7 +24,7 @@ class IdentityService(
             .setUsername(user.username)
             .setUserStatus(user.userStatus.toString())
             .setIsEmailVerified(user.isEmailVerified)
-            .setUserExists(false)
+            .setUserExists(false) // check the username it already exists
             .build()
     }
 }

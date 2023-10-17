@@ -5,6 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable
 import com.techorgx.api.utility.UserStatus
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
+
 @DynamoDBTable(tableName = "User")
 data class User(
     @DynamoDBHashKey
