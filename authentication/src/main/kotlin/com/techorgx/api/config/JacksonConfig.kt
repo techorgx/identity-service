@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class JacksonConfig {
+open class JacksonConfig {
     @Bean
-    fun getObjectMapper(): ObjectMapper {
+    open fun getObjectMapper(): ObjectMapper {
         return ObjectMapper()
     }
 }
