@@ -15,6 +15,13 @@ security:
     jwtTtlMin: 1
     opaqueTokenTtlHrs: 24
 
+rest:
+  customerService:
+    baseUrl: "http://localhost:7979/v1/customerservice"
+    contentType: "application/json"
+    uri:
+      addCustomer: "/addcustomer"
+
 server:
   error:
     include-stacktrace: never

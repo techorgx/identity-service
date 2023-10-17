@@ -9,7 +9,6 @@ data class User(
     val password: String = "",
     val email: String = "",
     val userId: String = "",
-    val deviceId: String = "",
     val registrationData: ZonedDateTime = ZonedDateTime.now(ZoneOffset.UTC),
     val lastLoginDate: ZonedDateTime = ZonedDateTime.now(ZoneOffset.UTC),
     val userStatus: UserStatus = UserStatus.SUSPENDED,

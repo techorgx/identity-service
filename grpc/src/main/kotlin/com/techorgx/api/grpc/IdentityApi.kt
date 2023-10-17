@@ -1,5 +1,6 @@
 package com.techorgx.api.grpc
 
+import com.techorgx.api.service.IdentityService
 import com.techorgx.identity.api.v1.CreateUserRequest
 import com.techorgx.identity.api.v1.CreateUserResponse
 import com.techorgx.identity.api.v1.IdentityApiGrpcKt
@@ -10,9 +11,11 @@ import com.techorgx.identity.api.v1.VerifyEmailResponse
 import org.lognet.springboot.grpc.GRpcService
 
 @GRpcService
-class IdentityApi : IdentityApiGrpcKt.IdentityApiCoroutineImplBase() {
+class IdentityApi(
+    private val identityService: IdentityService,
+) : IdentityApiGrpcKt.IdentityApiCoroutineImplBase() {
     override suspend fun createUser(request: CreateUserRequest): CreateUserResponse {
-        return super.createUser(request)
+        return identityService.createUser(request)
     }
 
     override suspend fun verifyEmail(request: VerifyEmailRequest): VerifyEmailResponse {
