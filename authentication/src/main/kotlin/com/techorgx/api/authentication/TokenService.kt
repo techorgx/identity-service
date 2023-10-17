@@ -49,6 +49,10 @@ class TokenService(
         }
     }
 
+    fun hashPassword(password: String): String {
+        return password
+    }
+
     private companion object {
         const val ISSUER = "identity-service"
     }
