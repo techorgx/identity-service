@@ -20,6 +20,7 @@
         <module>identity-api-protos</module>
         <module>authentication</module>
         <module>grpc</module>
+        <module>persistence</module>
     </modules>
 
     <profiles>
