@@ -2,6 +2,7 @@ package com.techorgx.api.service
 
 import com.techorgx.api.authentication.TokenService
 import com.techorgx.api.model.Customer
+import org.apache.logging.log4j.LogManager
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.BodyInserters
@@ -22,22 +23,28 @@ class CustomerService(
         customer: Customer,
         claims: Map<String, String> = emptyMap(),
     ): String? {
-        val webClient =
-            webClientBuilder
-                .baseUrl(baseUrl)
-                .defaultHeader("Authorization", "Bearer " + tokenService.generateJwtToken(claims))
-                .build()
+        try {
+            val webClient =
+                webClientBuilder
+                    .baseUrl(baseUrl)
+                    .defaultHeader("Authorization", "Bearer " + tokenService.generateJwtToken(claims))
+                    .build()
 
-        return webClient.post()
-            .uri(addCustomer)
-            .header(CONTENT_TYPE_KEY, contentType)
-            .body(BodyInserters.fromValue(customer))
-            .retrieve()
-            .bodyToMono(String::class.java)
-            .block()
+            return webClient.post()
+                .uri(addCustomer)
+                .header(CONTENT_TYPE_KEY, contentType)
+                .body(BodyInserters.fromValue(customer))
+                .retrieve()
+                .bodyToMono(String::class.java)
+                .block()
+        } catch (e: Exception) {
+            logger.error(e)
+        }
+        return null
     }
 
     private companion object {
         const val CONTENT_TYPE_KEY = "Content-Type"
+        val logger = LogManager.getLogger(CustomerService::class.java)
     }
 }

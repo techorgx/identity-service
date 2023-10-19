@@ -1,8 +1,8 @@
 package com.techorgx.api.repository
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper
-import com.techorgx.api.model.User
-import com.techorgx.api.utility.UserStatus
+import com.techorgx.api.entity.User
+import com.techorgx.api.util.UserStatus
 import io.grpc.Status
 import io.grpc.StatusException
 import org.apache.logging.log4j.LogManager
@@ -37,7 +37,7 @@ class UserRepositoryImpl(
     ) {
         val user = findById(id)
         user?.let {
-            it.userStatus = status
+            it.userStatus = status.toString()
             save(user)
         } ?: throw StatusException(Status.INTERNAL.withDescription("User can not be updated"))
     }

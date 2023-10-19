@@ -15,6 +15,19 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-security-core.version>5.5.8</spring-security-core.version>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring-security-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.techorgx.api</groupId>
+            <artifactId>persistence</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
 </project>

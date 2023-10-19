@@ -1,7 +1,7 @@
 package com.techorgx.api.repository
 
-import com.techorgx.api.model.User
-import com.techorgx.api.utility.UserStatus
+import com.techorgx.api.entity.User
+import com.techorgx.api.util.UserStatus
 
 interface UserRepository {
     fun <S : User?> save(entity: S): S

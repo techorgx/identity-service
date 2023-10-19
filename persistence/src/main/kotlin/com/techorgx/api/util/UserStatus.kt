@@ -1,4 +1,4 @@
-package com.techorgx.api.utility
+package com.techorgx.api.util
 
 enum class UserStatus {
     ACTIVE,

@@ -1,6 +1,6 @@
 aws:
   dynamodb:
-    tableName: "ads"
+    tableName: "User"
     secretKey: "12345"
     accessKey: "local"
     endpoint: "http://localhost:8000"
@@ -10,7 +10,7 @@ security:
   token:
     enabled: true
     bypass: "test"
-    keyFilePath: "secrets/local-ads-service-private.key"
+    keyFilePath: "secrets/local-identity-service-private.key"
     audience: []
     jwtTtlMin: 1
     opaqueTokenTtlHrs: 24
