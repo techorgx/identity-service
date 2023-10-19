@@ -1,5 +1,6 @@
 package com.techorgx.api.service
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.techorgx.api.authentication.TokenService
 import com.techorgx.api.model.Customer
 import org.apache.logging.log4j.LogManager
@@ -18,6 +19,7 @@ class CustomerService(
     private val addCustomer: String,
     private val webClientBuilder: WebClient.Builder,
     private val tokenService: TokenService,
+    private val objectMapper: ObjectMapper,
 ) {
     fun createCustomer(
         customer: Customer,
@@ -33,7 +35,7 @@ class CustomerService(
             return webClient.post()
                 .uri(addCustomer)
                 .header(CONTENT_TYPE_KEY, contentType)
-                .body(BodyInserters.fromValue(customer))
+                .body(BodyInserters.fromValue(objectMapper.writeValueAsString(customer)),)
                 .retrieve()
                 .bodyToMono(String::class.java)
                 .block()

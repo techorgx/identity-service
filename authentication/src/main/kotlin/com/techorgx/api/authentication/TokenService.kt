@@ -1,8 +1,8 @@
 package com.techorgx.api.authentication
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.techorgx.api.model.OpaqueToken
 import com.techorgx.api.entity.User
+import com.techorgx.api.model.OpaqueToken
 import com.techorgx.api.utility.LocalSecretFileReader
 import io.fusionauth.jwt.Signer
 import io.fusionauth.jwt.domain.JWT

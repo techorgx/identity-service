@@ -12,22 +12,16 @@ import java.time.ZonedDateTime
 data class User(
     @get:DynamoDBHashKey(attributeName = "username")
     var username: String = "",
-
     @get:DynamoDBRangeKey(attributeName = "userId")
     var userId: String = "",
-
     var password: String = "",
     var email: String = "",
-
     @get:DynamoDBAttribute(attributeName = "registrationData")
     var registrationData: String = ZonedDateTime.now(ZoneOffset.UTC).toString(),
-
     @get:DynamoDBAttribute(attributeName = "lastLoginDate")
     var lastLoginDate: String = ZonedDateTime.now(ZoneOffset.UTC).toString(),
-
     @get:DynamoDBAttribute(attributeName = "userStatus")
     var userStatus: String = UserStatus.SUSPENDED.toString(),
-
     @get:DynamoDBAttribute(attributeName = "isEmailVerified")
-    var isEmailVerified: Boolean = false
+    var isEmailVerified: Boolean = false,
 )
