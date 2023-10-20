@@ -2,40 +2,26 @@
   "TableName": "User",
   "KeySchema": [
     {
-      "AttributeName": "username",
+      "AttributeName": "userId",
       "KeyType": "HASH"
+    },
+    {
+      "AttributeName": "username",
+      "KeyType": "RANGE"
     }
   ],
   "AttributeDefinitions": [
     {
-      "AttributeName": "username",
+      "AttributeName": "userId",
       "AttributeType": "S"
     },
     {
-      "AttributeName": "userId",
+      "AttributeName": "username",
       "AttributeType": "S"
     }
   ],
   "ProvisionedThroughput": {
     "ReadCapacityUnits": 5,
     "WriteCapacityUnits": 5
-  },
-  "GlobalSecondaryIndexes": [
-    {
-      "IndexName": "UserIdIndex",
-      "KeySchema": [
-        {
-          "AttributeName": "userId",
-          "KeyType": "HASH"
-        }
-      ],
-      "Projection": {
-        "ProjectionType": "ALL"
-      },
-      "ProvisionedThroughput": {
-        "ReadCapacityUnits": 5,
-        "WriteCapacityUnits": 5
-      }
-    }
-  ]
+  }
 }

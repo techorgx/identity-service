@@ -1,14 +1,15 @@
 package com.techorgx.api.authentication
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.techorgx.api.entity.User
 import com.techorgx.api.model.OpaqueToken
-import com.techorgx.api.model.User
 import com.techorgx.api.utility.LocalSecretFileReader
 import io.fusionauth.jwt.Signer
 import io.fusionauth.jwt.domain.JWT
 import io.fusionauth.jwt.rsa.RSASigner
 import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.security.crypto.bcrypt.BCrypt
 import org.springframework.stereotype.Component
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
@@ -50,7 +51,7 @@ class TokenService(
     }
 
     fun hashPassword(password: String): String {
-        return password
+        return BCrypt.hashpw(password, BCrypt.gensalt())
     }
 
     private companion object {

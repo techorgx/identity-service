@@ -1,6 +1,6 @@
 aws:
   dynamodb:
-    tableName: "ads"
+    tableName: "User"
     secretKey: "12345"
     accessKey: "local"
     endpoint: "http://localhost:8000"

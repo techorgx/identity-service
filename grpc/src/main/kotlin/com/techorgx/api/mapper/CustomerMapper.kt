@@ -1,7 +1,7 @@
 package com.techorgx.api.mapper
 
+import com.techorgx.api.entity.User
 import com.techorgx.api.model.Customer
-import com.techorgx.api.model.User
 import com.techorgx.identity.api.v1.CreateUserRequest
 import org.springframework.stereotype.Component
 

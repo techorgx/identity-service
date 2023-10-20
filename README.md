@@ -61,7 +61,7 @@ There are a few options to run the application (from more flexible to least)
 
   ```bash
   mvn clean package
-  java -jar ./target/identity-service-exec.jar
+  java -jar ./target/identity-service-exec.jar --spring.profiles.active=local
   ```
 
 ### Invoking identity Service
