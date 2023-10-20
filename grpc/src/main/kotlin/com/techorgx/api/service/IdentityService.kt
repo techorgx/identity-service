@@ -16,12 +16,12 @@ class IdentityService(
     private val customerMapper: CustomerMapper,
     private val userMapper: UserMapper,
     private val userRepository: UserRepository,
-    private val validationService: ValidationService
+    private val validationService: ValidationService,
 ) {
     fun createUser(request: CreateUserRequest): CreateUserResponse {
         val user = userMapper.mapToUser(request)
-        if(!validationService.validateEmail(user.email)){
-            throw StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription("Invalid email"));
+        if (!validationService.validateEmail(user.email)) {
+            throw StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription("Invalid email"))
         }
         val customer = customerMapper.mapToCustomer(user, request)
         userRepository.save(user)

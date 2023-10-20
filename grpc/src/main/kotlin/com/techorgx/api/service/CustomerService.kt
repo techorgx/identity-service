@@ -35,7 +35,7 @@ class CustomerService(
             return webClient.post()
                 .uri(addCustomer)
                 .header(CONTENT_TYPE_KEY, contentType)
-                .body(BodyInserters.fromValue(objectMapper.writeValueAsString(customer)),)
+                .body(BodyInserters.fromValue(objectMapper.writeValueAsString(customer)))
                 .retrieve()
                 .bodyToMono(String::class.java)
                 .block()
