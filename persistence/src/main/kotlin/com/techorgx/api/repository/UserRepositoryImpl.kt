@@ -6,6 +6,7 @@ import com.techorgx.api.util.UserStatus
 import io.grpc.Status
 import io.grpc.StatusException
 import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import org.springframework.stereotype.Component
 
 @Component
@@ -43,6 +44,6 @@ class UserRepositoryImpl(
     }
 
     private companion object {
-        val logger = LogManager.getLogger(UserRepositoryImpl::class.java)
+        val logger: Logger = LogManager.getLogger(UserRepositoryImpl::class.java)
     }
 }
