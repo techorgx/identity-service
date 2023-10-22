@@ -2,19 +2,11 @@
   "TableName": "User",
   "KeySchema": [
     {
-      "AttributeName": "userId",
-      "KeyType": "HASH"
-    },
-    {
       "AttributeName": "username",
-      "KeyType": "RANGE"
+      "KeyType": "HASH"
     }
   ],
   "AttributeDefinitions": [
-    {
-      "AttributeName": "userId",
-      "AttributeType": "S"
-    },
     {
       "AttributeName": "username",
       "AttributeType": "S"

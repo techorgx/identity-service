@@ -12,4 +12,6 @@ interface UserRepository {
         id: String,
         status: UserStatus,
     )
+
+    fun deleteUser(username: String)
 }
