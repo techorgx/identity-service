@@ -20,10 +20,9 @@ message CreateUserRequest {
 
 message CreateUserResponse {
   string username = 1;
-  string userId = 2;
-  string userStatus = 3;
-  bool isEmailVerified = 4;
-  bool userExists = 5;
+  string userStatus = 2;
+  bool isEmailVerified = 3;
+  bool userExists = 4;
 }
 
 message VerifyEmailRequest {

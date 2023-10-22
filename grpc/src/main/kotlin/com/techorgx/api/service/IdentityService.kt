@@ -1,6 +1,6 @@
 package com.techorgx.api.service
 
-import com.techorgx.api.mapper.CustomerMapper
+import com.amazonaws.services.dynamodbv2.model.ConditionalCheckFailedException
 import com.techorgx.api.mapper.UserMapper
 import com.techorgx.api.repository.UserRepository
 import com.techorgx.api.validation.ValidationService
@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service
 
 @Service
 class IdentityService(
-    private val customerService: CustomerService,
-    private val customerMapper: CustomerMapper,
     private val userMapper: UserMapper,
     private val userRepository: UserRepository,
     private val validationService: ValidationService,
@@ -23,15 +21,18 @@ class IdentityService(
         if (!validationService.validateEmail(user.email)) {
             throw StatusRuntimeException(Status.INVALID_ARGUMENT.withDescription("Invalid email"))
         }
-        val customer = customerMapper.mapToCustomer(user, request)
-        userRepository.save(user)
-        customerService.createCustomer(customer)
+        var doesUserExists = false
+        try {
+            userRepository.save(user)
+        } catch (e: ConditionalCheckFailedException) {
+            doesUserExists = true
+        }
+
         return CreateUserResponse.newBuilder()
-            .setUserId(user.userId)
             .setUsername(user.username)
-            .setUserStatus(user.userStatus.toString())
+            .setUserStatus(user.userStatus)
             .setIsEmailVerified(user.isEmailVerified)
-            .setUserExists(false) // check the username it already exists
+            .setUserExists(doesUserExists)
             .build()
     }
 }
