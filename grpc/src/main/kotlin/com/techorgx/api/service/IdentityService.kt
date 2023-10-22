@@ -25,7 +25,6 @@ class IdentityService(
         }
         val customer = customerMapper.mapToCustomer(user, request)
         userRepository.save(user)
-
         customerService.createCustomer(customer)
         return CreateUserResponse.newBuilder()
             .setUserId(user.userId)
