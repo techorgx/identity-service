@@ -6,8 +6,20 @@ option java_package = "com.techorgx.identity.api.v1";
 
 service IdentityApi {
   rpc createUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc loginUser (LoginUserRequest) returns (LoginUserResponse);
   rpc verifyEmail (VerifyEmailRequest) returns (VerifyEmailResponse);
   rpc verifyEmailOtp (VerifyEmailOtpRequest) returns (VerifyEmailOtpResponse);
+}
+
+message LoginUserRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginUserResponse {
+  string username = 1;
+  string opaqueToken = 2;
+  bool isAuthenticated = 3;
 }
 
 message CreateUserRequest {

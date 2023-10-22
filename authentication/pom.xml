@@ -29,5 +29,11 @@
             <artifactId>persistence</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.techorgx.api</groupId>
+            <artifactId>identity-api-protos</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

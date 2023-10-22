@@ -3,9 +3,7 @@ package com.techorgx.api.model
 import java.time.ZonedDateTime
 
 data class OpaqueToken(
-    val tokenId: String = "",
-    val userId: String = "",
-    val expirationTimestamp: () -> ZonedDateTime = {
-        ZonedDateTime.now()
-    },
+    var tokenId: String = "",
+    var username: String = "",
+    var expirationTimestamp: ZonedDateTime = ZonedDateTime.now()
 )
