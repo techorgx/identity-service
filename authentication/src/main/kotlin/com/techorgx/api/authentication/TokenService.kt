@@ -3,6 +3,7 @@ package com.techorgx.api.authentication
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.techorgx.api.model.OpaqueToken
 import com.techorgx.api.utility.LocalSecretFileReader
+import com.techorgx.api.utility.MetadataUtils
 import com.techorgx.identity.api.v1.LoginUserRequest
 import io.fusionauth.jwt.Signer
 import io.fusionauth.jwt.domain.JWT
@@ -25,6 +26,7 @@ class TokenService(
     private val opaqueTokenTtlHrs: Long,
     private val objectMapper: ObjectMapper,
     private val localSecretFileReader: LocalSecretFileReader,
+    private val metadataUtils: MetadataUtils
 ) {
     fun generateJwtToken(claims: Map<String, String>): String {
         val secretKey = localSecretFileReader.readSecretKey()
@@ -44,9 +46,11 @@ class TokenService(
 
     fun generateOpaqueToken(request: LoginUserRequest): OpaqueToken {
         return OpaqueToken(
-            UUID.randomUUID().toString(),
-            request.username,
-            ZonedDateTime.now(ZoneOffset.UTC).plusHours(opaqueTokenTtlHrs),
+            tokenId = UUID.randomUUID().toString(),
+            username = request.username,
+            expirationTimestamp = ZonedDateTime.now(ZoneOffset.UTC).plusHours(opaqueTokenTtlHrs),
+            locale = metadataUtils.getLocale(),
+            deviceId = metadataUtils.getDeviceId()
         )
     }
 
