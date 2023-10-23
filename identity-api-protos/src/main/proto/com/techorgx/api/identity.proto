@@ -20,6 +20,7 @@ message LoginUserResponse {
   string username = 1;
   string opaqueToken = 2;
   bool isAuthenticated = 3;
+  bool userExists = 4;
 }
 
 message CreateUserRequest {

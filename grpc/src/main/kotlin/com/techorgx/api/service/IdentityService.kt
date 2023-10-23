@@ -10,7 +10,6 @@ import com.techorgx.identity.api.v1.CreateUserResponse
 import com.techorgx.identity.api.v1.LoginUserRequest
 import com.techorgx.identity.api.v1.LoginUserResponse
 import io.grpc.Status
-import io.grpc.StatusException
 import io.grpc.StatusRuntimeException
 import org.springframework.stereotype.Service
 
@@ -43,22 +42,26 @@ class IdentityService(
 
     fun loginUser(request: LoginUserRequest): LoginUserResponse {
         val user = userRepository.findById(request.username)
+        val responseBuilder = LoginUserResponse.newBuilder()
         user?.let {
-            val responseBuilder = LoginUserResponse.newBuilder()
             val authenticated = validationService.validatePassword(request.password, user.password)
             if (authenticated) {
                 responseBuilder.isAuthenticated = true
                 responseBuilder.username = request.username
+                responseBuilder.userExists = true
                 val opaqueToken = tokenService.generateOpaqueToken(request)
                 responseBuilder.opaqueToken = opaqueToken.tokenId
-                // save opaque token
+                return responseBuilder.build()
             } else {
                 responseBuilder.username = request.username
                 responseBuilder.isAuthenticated = false
+                responseBuilder.userExists = true
                 return responseBuilder.build()
             }
-            return responseBuilder.build()
         }
-        throw StatusException(Status.UNAUTHENTICATED.withDescription("User not found"))
+        responseBuilder.username = request.username
+        responseBuilder.isAuthenticated = false
+        responseBuilder.userExists = false
+        return responseBuilder.build()
     }
 }

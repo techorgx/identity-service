@@ -43,10 +43,10 @@ class TokenService(
     }
 
     fun generateOpaqueToken(request: LoginUserRequest): OpaqueToken {
-        return OpaqueToken (
+        return OpaqueToken(
             UUID.randomUUID().toString(),
             request.username,
-            ZonedDateTime.now(ZoneOffset.UTC).plusHours(opaqueTokenTtlHrs)
+            ZonedDateTime.now(ZoneOffset.UTC).plusHours(opaqueTokenTtlHrs),
         )
     }
 
