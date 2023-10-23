@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service
 import java.util.concurrent.TimeUnit
 
 @Service
+@Deprecated("Cache will be moved to Redis")
 class CacheService(
     @Value("\${security.token.opaqueTokenTtlHrs}")
     private val opaqueTokenTtlHrs: Long,
