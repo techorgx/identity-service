@@ -4,6 +4,8 @@ import com.techorgx.api.service.IdentityService
 import com.techorgx.identity.api.v1.CreateUserRequest
 import com.techorgx.identity.api.v1.CreateUserResponse
 import com.techorgx.identity.api.v1.IdentityApiGrpcKt
+import com.techorgx.identity.api.v1.LoginUserRequest
+import com.techorgx.identity.api.v1.LoginUserResponse
 import com.techorgx.identity.api.v1.VerifyEmailOtpRequest
 import com.techorgx.identity.api.v1.VerifyEmailOtpResponse
 import com.techorgx.identity.api.v1.VerifyEmailRequest
@@ -16,6 +18,10 @@ class IdentityApi(
 ) : IdentityApiGrpcKt.IdentityApiCoroutineImplBase() {
     override suspend fun createUser(request: CreateUserRequest): CreateUserResponse {
         return identityService.createUser(request)
+    }
+
+    override suspend fun loginUser(request: LoginUserRequest): LoginUserResponse {
+        return identityService.loginUser(request)
     }
 
     override suspend fun verifyEmail(request: VerifyEmailRequest): VerifyEmailResponse {

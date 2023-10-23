@@ -1,9 +1,9 @@
 package com.techorgx.api.authentication
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.techorgx.api.entity.User
 import com.techorgx.api.model.OpaqueToken
 import com.techorgx.api.utility.LocalSecretFileReader
+import com.techorgx.identity.api.v1.LoginUserRequest
 import io.fusionauth.jwt.Signer
 import io.fusionauth.jwt.domain.JWT
 import io.fusionauth.jwt.rsa.RSASigner
@@ -42,12 +42,12 @@ class TokenService(
         return JWT.getEncoder().encode(jwt, signer)
     }
 
-    fun generateOpaqueToken(user: User): OpaqueToken {
-        return OpaqueToken {
-            UUID.randomUUID().toString()
-            user.userId
-            ZonedDateTime.now(ZoneOffset.UTC).plusHours(opaqueTokenTtlHrs)
-        }
+    fun generateOpaqueToken(request: LoginUserRequest): OpaqueToken {
+        return OpaqueToken(
+            UUID.randomUUID().toString(),
+            request.username,
+            ZonedDateTime.now(ZoneOffset.UTC).plusHours(opaqueTokenTtlHrs),
+        )
     }
 
     fun hashPassword(password: String): String {
