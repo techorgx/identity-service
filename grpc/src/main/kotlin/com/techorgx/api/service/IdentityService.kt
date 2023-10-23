@@ -20,7 +20,7 @@ class IdentityService(
     private val userRepository: UserRepository,
     private val validationService: ValidationService,
     private val tokenService: TokenService,
-    private val cacheService: CacheService,
+    private val cacheService: CacheService
 ) {
     fun createUser(request: CreateUserRequest): CreateUserResponse {
         val user = userMapper.mapToUser(request)
@@ -44,7 +44,6 @@ class IdentityService(
 
     fun loginUser(request: LoginUserRequest): LoginUserResponse {
         val user = userRepository.findById(request.username)
-
         user?.let {
             val authenticated = validationService.validatePassword(request.password, user.password)
             if (authenticated) {
