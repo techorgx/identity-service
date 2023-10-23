@@ -6,4 +6,6 @@ data class OpaqueToken(
     var tokenId: String = "",
     var username: String = "",
     var expirationTimestamp: ZonedDateTime = ZonedDateTime.now(),
+    var deviceId: String = "",
+    var locale: String = "",
 )
