@@ -3,6 +3,8 @@ package com.techorgx.api.grpc
 import com.techorgx.api.service.IdentityService
 import com.techorgx.identity.api.v1.CreateUserRequest
 import com.techorgx.identity.api.v1.CreateUserResponse
+import com.techorgx.identity.api.v1.GenerateJwtRequest
+import com.techorgx.identity.api.v1.GenerateJwtResponse
 import com.techorgx.identity.api.v1.IdentityApiGrpcKt
 import com.techorgx.identity.api.v1.LoginUserRequest
 import com.techorgx.identity.api.v1.LoginUserResponse
@@ -22,6 +24,10 @@ class IdentityApi(
 
     override suspend fun loginUser(request: LoginUserRequest): LoginUserResponse {
         return identityService.loginUser(request)
+    }
+
+    override suspend fun generateJwt(request: GenerateJwtRequest): GenerateJwtResponse {
+        return identityService.generateJwt(request)
     }
 
     override suspend fun verifyEmail(request: VerifyEmailRequest): VerifyEmailResponse {

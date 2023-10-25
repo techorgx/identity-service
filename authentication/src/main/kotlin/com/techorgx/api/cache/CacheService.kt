@@ -15,7 +15,9 @@ class CacheService(
 ) {
     val cache: Cache<String, OpaqueToken> =
         CacheBuilder.newBuilder()
-            .maximumSize(1000) // move this cache to Redis server on a separate pod to avoid memory issues, for now it is ok to use google cache.
+            .maximumSize(
+                1000,
+            ) // move this cache to Redis server on a separate pod to avoid memory issues, for now it is ok to use google cache.
             .expireAfterWrite(opaqueTokenTtlHrs, TimeUnit.HOURS)
             .build()
 }

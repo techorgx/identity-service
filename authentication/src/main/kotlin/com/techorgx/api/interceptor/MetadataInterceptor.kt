@@ -14,16 +14,18 @@ class MetadataInterceptor : ServerInterceptor {
         val DEVICE_ID: Context.Key<String> = Context.key("device-id")
         val LOCALE: Context.Key<String> = Context.key("locale")
     }
+
     override fun <ReqT, RespT> interceptCall(
         call: ServerCall<ReqT, RespT>,
         headers: Metadata,
-        next: ServerCallHandler<ReqT, RespT>
+        next: ServerCallHandler<ReqT, RespT>,
     ): ServerCall.Listener<ReqT> {
         val deviceId = headers.get(Metadata.Key.of("device-id", Metadata.ASCII_STRING_MARSHALLER))
         val locale = headers.get(Metadata.Key.of("locale", Metadata.ASCII_STRING_MARSHALLER))
-        val context: Context = Context.current()
-            .withValue(DEVICE_ID, deviceId)
-            .withValue(LOCALE, locale)
+        val context: Context =
+            Context.current()
+                .withValue(DEVICE_ID, deviceId)
+                .withValue(LOCALE, locale)
         return Contexts.interceptCall(context, call, headers, next)
     }
 }

@@ -8,6 +8,8 @@ import com.techorgx.api.repository.UserRepository
 import com.techorgx.api.validation.ValidationService
 import com.techorgx.identity.api.v1.CreateUserRequest
 import com.techorgx.identity.api.v1.CreateUserResponse
+import com.techorgx.identity.api.v1.GenerateJwtRequest
+import com.techorgx.identity.api.v1.GenerateJwtResponse
 import com.techorgx.identity.api.v1.LoginUserRequest
 import com.techorgx.identity.api.v1.LoginUserResponse
 import io.grpc.Status
@@ -20,7 +22,7 @@ class IdentityService(
     private val userRepository: UserRepository,
     private val validationService: ValidationService,
     private val tokenService: TokenService,
-    private val cacheService: CacheService
+    private val cacheService: CacheService,
 ) {
     fun createUser(request: CreateUserRequest): CreateUserResponse {
         val user = userMapper.mapToUser(request)
@@ -60,6 +62,21 @@ class IdentityService(
             }
         }
         return buildLoginUserResponse(username = request.username, isAuthenticated = false, userExists = false, opaqueToken = "")
+    }
+
+    fun generateJwt(request: GenerateJwtRequest): GenerateJwtResponse {
+        val opaqueToken = cacheService.cache.getIfPresent(request.tokenId)
+        opaqueToken?.let {
+            val jwt = tokenService.generateJwtToken(emptyMap())
+            return GenerateJwtResponse
+                .newBuilder()
+                .setJwtToken(jwt)
+                .build()
+        }
+        return GenerateJwtResponse
+            .newBuilder()
+            .setJwtToken("")
+            .build()
     }
 
     private fun buildLoginUserResponse(
