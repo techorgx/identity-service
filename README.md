@@ -76,7 +76,7 @@ Then import .proto file
 
 ```json
 {
-  "alg": "HS256",
+  "alg": "RS256",
   "typ": "JWT"
 }
 ```
