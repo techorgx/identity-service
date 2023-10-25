@@ -7,8 +7,18 @@ option java_package = "com.techorgx.identity.api.v1";
 service IdentityApi {
   rpc createUser (CreateUserRequest) returns (CreateUserResponse);
   rpc loginUser (LoginUserRequest) returns (LoginUserResponse);
+  rpc generateJwt (GenerateJwtRequest) returns (GenerateJwtResponse);
   rpc verifyEmail (VerifyEmailRequest) returns (VerifyEmailResponse);
   rpc verifyEmailOtp (VerifyEmailOtpRequest) returns (VerifyEmailOtpResponse);
+}
+
+message GenerateJwtRequest {
+  string tokenId = 1;
+  string username = 2;
+}
+
+message GenerateJwtResponse {
+  string jwtToken = 1;
 }
 
 message LoginUserRequest {

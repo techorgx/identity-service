@@ -26,7 +26,7 @@ class TokenService(
     private val opaqueTokenTtlHrs: Long,
     private val objectMapper: ObjectMapper,
     private val localSecretFileReader: LocalSecretFileReader,
-    private val metadataUtils: MetadataUtils
+    private val metadataUtils: MetadataUtils,
 ) {
     fun generateJwtToken(claims: Map<String, String>): String {
         val secretKey = localSecretFileReader.readSecretKey()
@@ -50,7 +50,7 @@ class TokenService(
             username = request.username,
             expirationTimestamp = ZonedDateTime.now(ZoneOffset.UTC).plusHours(opaqueTokenTtlHrs),
             locale = metadataUtils.getLocale(),
-            deviceId = metadataUtils.getDeviceId()
+            deviceId = metadataUtils.getDeviceId(),
         )
     }
 
