@@ -8,6 +8,8 @@ import com.techorgx.identity.api.v1.GenerateJwtResponse
 import com.techorgx.identity.api.v1.IdentityApiGrpcKt
 import com.techorgx.identity.api.v1.LoginUserRequest
 import com.techorgx.identity.api.v1.LoginUserResponse
+import com.techorgx.identity.api.v1.LogoutUserRequest
+import com.techorgx.identity.api.v1.LogoutUserResponse
 import com.techorgx.identity.api.v1.VerifyEmailOtpRequest
 import com.techorgx.identity.api.v1.VerifyEmailOtpResponse
 import com.techorgx.identity.api.v1.VerifyEmailRequest
@@ -24,6 +26,10 @@ class IdentityApi(
 
     override suspend fun loginUser(request: LoginUserRequest): LoginUserResponse {
         return identityService.loginUser(request)
+    }
+
+    override suspend fun logoutUser(request: LogoutUserRequest): LogoutUserResponse {
+        return identityService.logoutUser(request)
     }
 
     override suspend fun generateJwt(request: GenerateJwtRequest): GenerateJwtResponse {
