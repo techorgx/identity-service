@@ -12,6 +12,8 @@ import com.techorgx.identity.api.v1.GenerateJwtRequest
 import com.techorgx.identity.api.v1.GenerateJwtResponse
 import com.techorgx.identity.api.v1.LoginUserRequest
 import com.techorgx.identity.api.v1.LoginUserResponse
+import com.techorgx.identity.api.v1.LogoutUserRequest
+import com.techorgx.identity.api.v1.LogoutUserResponse
 import io.grpc.Status
 import io.grpc.StatusRuntimeException
 import org.springframework.stereotype.Service
@@ -62,6 +64,13 @@ class IdentityService(
             }
         }
         return buildLoginUserResponse(username = request.username, isAuthenticated = false, userExists = false, opaqueToken = "")
+    }
+
+    fun logoutUser(request: LogoutUserRequest): LogoutUserResponse {
+        if (request.username.lowercase() == cacheService.cache.getIfPresent(request.tokenId)?.username?.lowercase()) {
+            cacheService.cache.invalidate(request.tokenId)
+        }
+        return LogoutUserResponse.getDefaultInstance()
     }
 
     fun generateJwt(request: GenerateJwtRequest): GenerateJwtResponse {
