@@ -46,7 +46,7 @@ class TokenService(
 
     fun generateOpaqueToken(request: LoginUserRequest): OpaqueToken {
         return OpaqueToken(
-            tokenId = UUID.randomUUID().toString(),
+            tokenId = (UUID.randomUUID().toString() + UUID.randomUUID().toString() + UUID.randomUUID().toString()).replace("-",""),
             username = request.username,
             expirationTimestamp = ZonedDateTime.now(ZoneOffset.UTC).plusHours(opaqueTokenTtlHrs),
             locale = metadataUtils.getLocale(),
